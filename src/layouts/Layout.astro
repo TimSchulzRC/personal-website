@@ -1,22 +1,44 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link
+			rel="preload"
+			href="/fonts/FiraMono-Regular.ttf"
+			as="font"
+			type="font/ttf"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/FiraMono-Medium.ttf"
+			as="font"
+			type="font/ttf"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/FiraMono-Bold.ttf"
+			as="font"
+			type="font/ttf"
+			crossorigin
+		/>
+
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
-	<body>
+	<body class="bg-background">
+		<header class="container mx-auto">
+			<nav class="border-b-1 border-white py-6">
+				<div class="font-mono font-light text-white">Tim Schulz</div>
+			</nav>
+		</header>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

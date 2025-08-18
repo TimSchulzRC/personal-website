@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+	--color-background: #1a1a1a;
+	--color-primary: #d94a17;
+	--gradient: radial-gradient(
+		130.58% 100.04% at 31.37% 0%,
+		#d94a17 15%,
+		rgba(232, 86, 34, 0.55) 50%,
+		rgba(194, 134, 112, 0.1) 80%,
+		rgba(26, 26, 26, 0) 100%
+	);
+
+	--font-mono: "Fira Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@font-face {
+	font-family: "Fira Mono";
+	src: url("/fonts/FiraMono-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Fira Mono";
+	src: url("/fonts/FiraMono-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Fira Mono";
+	src: url("/fonts/FiraMono-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
