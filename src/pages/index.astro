@@ -1,4 +1,8 @@
 ---
+import { Image } from "astro:assets";
+import bgPattern from "../assets/bg-pattern.svg";
+import profilePicture from "../assets/profile-picture.png";
+import sectionGradient from "../assets/section_gradient.svg";
 import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,20 +11,159 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
 	<main class="">
-		<div class="bg-[url(/bg-pattern.svg)] bg-auto">
-			<section class="container mx-auto py-32">
-				<div class="absolute top-0 left-0 h-72 w-full bg-(image:--gradient)">
-				</div>
-				<div class="z-10 max-w-1/2">
-					<div
-						class="border-s-1 border-b-1 border-white py-12 ps-12 font-mono text-4xl text-white"
-					>
-						Hey, ich bin
+		<div class="">
+			<div
+				class="absolute -top-32 left-0 -z-10 h-[700px] w-full -rotate-6 bg-[radial-gradient(ellipse_101.73%_140.07%_at_30.39%_0.00%,_#1A1A1A_54%,_rgba(26,_26,_26,_0.50)_100%)]"
+			>
+			</div>
+			<div
+				class="absolute top-0 left-0 -z-10 h-[450px] w-full bg-(image:--gradient)"
+			>
+			</div>
+			<section class="relative container mx-auto max-w-5xl py-32">
+				<Image
+					src={bgPattern}
+					alt=""
+					class="absolute top-0 left-0 -z-20 w-full opacity-25"
+				/>
+
+				<div class="grid items-center gap-12 md:grid-cols-2">
+					<div class="z-10 order-2 md:order-1">
+						<div
+							class="border-s-1 border-b-1 border-white/50 py-8 ps-12 font-mono text-4xl text-white"
+						>
+							Hey, ich bin
+						</div>
+						<div
+							class="flex flex-col items-start gap-10 border-s-1 border-white/50 py-8 ps-12"
+						>
+							<span class="text-primary font-mono text-6xl"> Tim </span>
+							<button
+								class="border-1 border-white/50 px-8 py-3 font-mono text-white"
+								>Kontaktieren</button
+							>
+						</div>
 					</div>
+
+					<div class="z-10 flex justify-center md:order-2 md:justify-end">
+						<div
+							class="relative aspect-square w-full max-w-1/2 rounded-full md:max-w-96"
+						>
+							<div
+								class="bg-background aspect-square w-full rounded-full border border-white/20 shadow-[0px_0px_36px_8px_rgba(0,0,0,0.25)]"
+							>
+							</div>
+							<div
+								class="backdrop-blur-blur absolute bottom-0 aspect-square h-full w-full rounded-full bg-[radial-gradient(ellipse_100.04%_130.58%_at_31.37%_0.00%,_#D94A17_0%,_rgba(231.54,_85.68,_33.66,_0.55)_62%,_rgba(193.80,_133.96,_112.20,_0.10)_100%)]"
+							>
+							</div>
+							<Image
+								src={profilePicture}
+								alt="Tim Schulz Portrait"
+								class="absolute bottom-0 w-full rounded-full"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="container mx-auto max-w-5xl">
+				<div
+					class="inline-flex w-[1024px] items-start justify-start overflow-hidden bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
+				>
 					<div
-						class="text-primary border-s-1 border-white py-12 ps-12 font-mono text-6xl"
+						class="flex flex-1 items-start justify-start gap-16 overflow-hidden p-2.5"
 					>
-						Tim
+						<div class="flex-1 self-stretch p-2.5"></div>
+						<div
+							class="inline-flex flex-1 flex-col items-start justify-center gap-8"
+						>
+							<div
+								class="justify-start self-stretch font-mono text-4xl leading-9 font-normal text-white"
+							>
+								Über mich
+							</div>
+							<div
+								class="justify-start self-stretch font-sans text-base leading-normal text-white"
+							>
+								Ich bin Tim Schulz, leidenschaftlicher Softwareentwickler,
+								spezialisiert auf Webentwicklung. Unter dem Einsatz moderner
+								Webtechnologien setze ich informative Websites um und entwickle
+								individuelle, interaktive Webanwendungen.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="container mx-auto mt-32 max-w-5xl">
+				<div
+					class="relative inline-flex flex-col items-start justify-start gap-16 self-stretch"
+				>
+					<Image
+						src={sectionGradient}
+						alt=""
+						class="absolute -top-0 -z-10 h-72 w-full scale-150 overflow-visible bg-center bg-no-repeat"
+					/>
+					<div
+						class="justify-start self-stretch text-center font-mono text-5xl leading-[48px] font-normal text-white"
+					>
+						Skills
+					</div>
+					<div class="inline-flex items-start justify-start gap-4 self-stretch">
+						<div
+							class="inline-flex flex-1 flex-col items-start justify-start gap-4 self-stretch overflow-hidden bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
+						>
+							<div
+								class="justify-start self-stretch font-['Fira_Mono'] text-4xl leading-9 font-normal text-white"
+							>
+								Websites
+							</div>
+							<div
+								class="justify-start self-stretch font-['Fira_Sans'] text-base leading-normal font-normal text-white"
+							>
+								Seit einigen Jahren ist das erstellen von Webseiten meine
+								Spezialität.
+							</div>
+						</div>
+						<div
+							class="inline-flex flex-1 flex-col items-start justify-start gap-4 self-stretch overflow-hidden bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
+						>
+							<div
+								class="justify-start self-stretch font-['Fira_Mono'] text-4xl leading-9 font-normal text-white"
+							>
+								Webapps
+							</div>
+							<div
+								class="justify-start self-stretch font-['Fira_Sans'] text-base leading-normal font-normal text-white"
+							>
+								Aute quis velit elit aliquip eiusmod eiusmod dolore tempor
+								cillum mollit sit. Enim aute ad labore mollit voluptate et
+								incididunt non ex pariatur ex sit commodo quis. Incididunt
+								pariatur in commodo ad<br />proident id nulla officia cillum
+								sint sunt adipisicing qui adipisicing. Consequat nulla velit
+								occaecat est et culpa deserunt aute magna proident sunt aute
+								labore dolore nisi. Amet quis eiusmod commodo adipisicing.
+							</div>
+						</div>
+						<div
+							class="inline-flex flex-1 flex-col items-start justify-start gap-4 self-stretch overflow-hidden bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 outline outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
+						>
+							<div
+								class="justify-start self-stretch font-['Fira_Mono'] text-4xl leading-9 font-normal text-white"
+							>
+								Beratung
+							</div>
+							<div
+								class="justify-start self-stretch font-['Fira_Sans'] text-base leading-normal font-normal text-white"
+							>
+								Aute quis velit elit aliquip eiusmod eiusmod dolore tempor
+								cillum mollit sit. Enim aute ad labore mollit voluptate et
+								incididunt non ex pariatur ex sit commodo quis. Incididunt
+								pariatur in commodo ad<br />proident id nulla officia cillum
+								sint sunt adipisicing qui adipisicing. Consequat nulla velit
+								occaecat est et culpa deserunt aute magna proident sunt aute
+								labore dolore nisi. Amet quis eiusmod commodo adipisicing.
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
