@@ -20,8 +20,8 @@ import Layout from "../layouts/Layout.astro";
 			>
 			</div>
 			<section class="relative container mx-auto max-w-5xl px-6 py-12 md:px-12">
-				<div class="grid gap-12 md:grid-cols-2">
-					<div class="z-10">
+				<div class="grid items-center gap-12 md:grid-cols-2">
+					<div class="z-10" data-reveal style="--rd:0ms">
 						<div class="relative ps-12">
 							<div
 								class="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-white/50 to-transparent"
@@ -133,49 +133,54 @@ import Layout from "../layouts/Layout.astro";
 						</div>
 					</div>
 
-					<div class="z-10">
-						<div
-							class="relative w-full bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
-						>
+					<div
+						class="z-10 flex justify-center md:justify-end"
+						data-reveal
+						style="--rd:140ms"
+					>
+						<div class="relative h-56 w-56 md:h-80 md:w-80">
 							<div
-								class="absolute -top-12 right-10 z-20 aspect-square w-28 md:w-32"
+								class="bg-background absolute inset-0 rounded-full border border-white/20 shadow-[0px_0px_36px_8px_rgba(0,0,0,0.25)]"
 							>
-								<div
-									class="bg-background absolute inset-0 rounded-full border border-white/20 shadow-[0px_0px_36px_8px_rgba(0,0,0,0.25)]"
-								>
-								</div>
-								<div
-									class="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_100.04%_130.58%_at_31.37%_0.00%,_#D94A17_0%,_rgba(231.54,_85.68,_33.66,_0.55)_62%,_rgba(193.80,_133.96,_112.20,_0.10)_100%)]"
-								>
-								</div>
-								<Image
-									src={profilePicture}
-									alt="Tim Schulz Portrait"
-									class="absolute bottom-0 w-full rounded-full"
-								/>
 							</div>
-							<div class="flex flex-col items-start gap-4">
-								<div
-									class="self-stretch font-mono text-4xl leading-9 font-normal text-white"
-								>
-									Über mich
-								</div>
-								<p
-									class="self-stretch font-sans text-base leading-normal text-white"
-								>
-									Ich habe Informatik studiert und entwickle seit Jahren
-									Websites und Webanwendungen. Mein Fokus liegt auf einer
-									durchdachten User Experience – Anwendungen sollen nicht nur
-									funktionieren, sondern sich gut bedienen lassen.
-								</p>
-								<p
-									class="self-stretch font-sans text-base leading-normal text-white"
-								>
-									Als IT-Berater und Anwendungsentwickler setze ich Projekte in
-									unterschiedlichsten Bereichen um: Von der Restrukturierung
-									gewachsener Systeme bis hin zu individuellen Webanwendungen.
-								</p>
+							<div
+								class="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_100.04%_130.58%_at_31.37%_0.00%,_#D94A17_0%,_rgba(231.54,_85.68,_33.66,_0.55)_62%,_rgba(193.80,_133.96,_112.20,_0.10)_100%)]"
+							>
 							</div>
+							<Image
+								src={profilePicture}
+								alt="Tim Schulz Portrait"
+								class="absolute bottom-0 w-full rounded-full"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="container mx-auto max-w-5xl px-6 md:px-12">
+				<div
+					class="relative w-full bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
+					data-reveal
+					style="--rd:240ms"
+				>
+					<div class="flex flex-col gap-6">
+						<div
+							class="font-mono text-4xl leading-9 font-normal text-white"
+						>
+							Über mich
+						</div>
+						<div class="grid gap-6 md:grid-cols-2">
+							<p class="font-sans text-base leading-normal text-white">
+								Ich habe Informatik studiert und entwickle seit Jahren Websites
+								und Webanwendungen. Mein Fokus liegt auf einer durchdachten User
+								Experience – Anwendungen sollen nicht nur funktionieren, sondern
+								sich gut bedienen lassen.
+							</p>
+							<p class="font-sans text-base leading-normal text-white">
+								Als IT-Berater und Anwendungsentwickler setze ich Projekte in
+								unterschiedlichsten Bereichen um: Von der Restrukturierung
+								gewachsener Systeme bis hin zu individuellen Webanwendungen.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -255,4 +260,26 @@ import Layout from "../layouts/Layout.astro";
 			</section>
 		</div>
 	</main>
+
+	<style>
+		@keyframes reveal-in {
+			from {
+				opacity: 0;
+				transform: translateY(16px);
+			}
+			to {
+				opacity: 1;
+				transform: none;
+			}
+		}
+		[data-reveal] {
+			animation: reveal-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+			animation-delay: var(--rd, 0ms);
+		}
+		@media (prefers-reduced-motion: reduce) {
+			[data-reveal] {
+				animation: none;
+			}
+		}
+	</style>
 </Layout>
