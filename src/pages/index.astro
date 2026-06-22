@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import bgPattern from "../assets/bg-pattern.svg";
 import profilePicture from "../assets/profile-picture.png";
 import sectionGradient from "../assets/section_gradient.svg";
 import Layout from "../layouts/Layout.astro";
@@ -20,28 +19,20 @@ import Layout from "../layouts/Layout.astro";
 				class="absolute top-0 left-0 -z-10 h-[450px] w-full bg-(image:--gradient)"
 			>
 			</div>
-			<section class="relative container mx-auto max-w-5xl py-32">
-				<Image
-					src={bgPattern}
-					alt=""
-					class="absolute top-0 left-0 -z-20 w-full opacity-25"
-				/>
-
+			<section class="relative container mx-auto max-w-5xl px-6 py-32 md:px-12">
 				<div class="grid items-center gap-12 md:grid-cols-2">
 					<div class="z-10 order-2 md:order-1">
-						<div
-							class="border-s-1 border-b-1 border-white/50 py-8 ps-12 font-mono text-4xl text-white"
-						>
-							Hey, ich bin
-						</div>
-						<div
-							class="flex flex-col items-start gap-10 border-s-1 border-white/50 py-8 ps-12"
-						>
-							<span class="text-primary font-mono text-6xl"> Tim </span>
-							<button
-								class="border-1 border-white/50 px-8 py-3 font-mono text-white"
-								>Kontaktieren</button
+						<div class="relative ps-12">
+							<div
+								class="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-white/50 to-transparent"
 							>
+							</div>
+							<div class="py-8 font-mono text-4xl text-white">Hey, ich bin</div>
+							<div
+								class="h-px w-full bg-gradient-to-r from-white/40 to-transparent"
+							>
+							</div>
+							<div class="py-8 font-mono text-6xl text-primary">Tim</div>
 						</div>
 					</div>
 
@@ -66,9 +57,9 @@ import Layout from "../layouts/Layout.astro";
 					</div>
 				</div>
 			</section>
-			<section class="container mx-auto max-w-5xl">
+			<section class="container mx-auto max-w-5xl px-6 md:px-12">
 				<div
-					class="inline-flex w-[1024px] items-start justify-start overflow-hidden bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
+					class="inline-flex w-full items-start justify-start overflow-hidden bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm"
 				>
 					<div
 						class="flex flex-1 items-start justify-start gap-16 overflow-hidden p-2.5"
@@ -94,7 +85,7 @@ import Layout from "../layouts/Layout.astro";
 					</div>
 				</div>
 			</section>
-			<section class="container mx-auto mt-32 max-w-5xl">
+			<section class="container mx-auto mt-32 max-w-5xl px-6 md:px-12">
 				<div
 					class="relative inline-flex flex-col items-start justify-start gap-16 self-stretch"
 				>
