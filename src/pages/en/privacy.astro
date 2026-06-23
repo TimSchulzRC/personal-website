@@ -1,0 +1,105 @@
+---
+import Legal from "../../layouts/Legal.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<Legal
+	lang={lang}
+	routeKey="privacy"
+	title={t("meta.privacy.title")}
+	description={t("meta.privacy.description")}
+	heading="Privacy Policy"
+>
+	<p class="muted">
+		This is a translation for convenience. The legally binding version is the
+		German <a href="/datenschutz/">Datenschutzerklärung</a>.
+	</p>
+
+	<h2>1. Controller</h2>
+	<p>
+		The controller responsible for data processing on this website is:<br />
+		Tim Schulz<br />
+		[Street and number], [Postal code and city]<br />
+		Email: <a href="mailto:kontakt@timschulz.net">kontakt@timschulz.net</a>
+	</p>
+
+	<h2>2. General information on data processing</h2>
+	<p>
+		This website is implemented as a static site. No cookies are set, and no
+		tracking or analytics services are used. There is no automated evaluation of
+		your behaviour.
+	</p>
+
+	<h2>3. Hosting and server log files</h2>
+	<p>
+		The website is hosted by an external provider: [name and address of the
+		hosting provider]. When you access the site, the hosting provider processes
+		technically necessary access data (server log files) that your browser
+		transmits automatically:
+	</p>
+	<ul>
+		<li>anonymised or shortened IP address</li>
+		<li>date and time of access</li>
+		<li>page / file requested</li>
+		<li>browser and operating system used</li>
+		<li>referrer URL</li>
+	</ul>
+	<p>
+		The legal basis is Art. 6 (1) (f) GDPR. The legitimate interest lies in the
+		technically error-free provision and security of the website. This data is
+		not merged with other data sources.
+	</p>
+
+	<h2>4. Fonts</h2>
+	<p>
+		The fonts used (Fira Mono and Fira Sans) are served locally from my own
+		server. There is <strong>no</strong> connection to third-party servers (such
+		as Google Fonts), and no personal data is transferred to third parties in the
+		process.
+	</p>
+
+	<h2>5. Contact by email</h2>
+	<p>
+		If you contact me by email, your details (email address, message content) are
+		stored in order to process your request. The legal basis is Art. 6 (1) (b)
+		and (f) GDPR. The data is deleted as soon as it is no longer required to
+		fulfil its purpose.
+	</p>
+
+	<h2>6. External links and social networks</h2>
+	<p>
+		This website links to external profiles (GitHub, LinkedIn, YouTube,
+		Instagram). These are simple links; no content from these providers is
+		embedded. Only when you click a link are you forwarded to the respective
+		platform, whose privacy policy then applies.
+	</p>
+
+	<h2>7. Your rights</h2>
+	<p>You have the right at any time to:</p>
+	<ul>
+		<li>access to the data stored about you (Art. 15 GDPR)</li>
+		<li>rectification of inaccurate data (Art. 16 GDPR)</li>
+		<li>erasure (Art. 17 GDPR)</li>
+		<li>restriction of processing (Art. 18 GDPR)</li>
+		<li>data portability (Art. 20 GDPR)</li>
+		<li>object to processing (Art. 21 GDPR)</li>
+	</ul>
+	<p>
+		You also have the right to lodge a complaint with a data protection
+		supervisory authority (Art. 77 GDPR).
+	</p>
+
+	<h2>8. SSL/TLS encryption</h2>
+	<p>
+		For security reasons, this site uses SSL/TLS encryption. You can recognise an
+		encrypted connection by the "https://" in your browser's address bar.
+	</p>
+
+	<p class="muted">
+		Note: please fill in the marked placeholders (address, hosting provider) and
+		have the policy reviewed legally if needed.
+	</p>
+</Legal>

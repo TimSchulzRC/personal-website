@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import profilePicture from "../assets/Profile-picture.png";
+import type { Lang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+import Socials from "./Socials.astro";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const panel =
+	"relative w-full bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm";
+---
+
+<main id="main">
+	<div>
+		<div
+			class="absolute -top-32 left-0 -z-10 h-[700px] w-full scale-125 -rotate-6 bg-[radial-gradient(ellipse_101.73%_140.07%_at_30.39%_0.00%,_#1A1A1A_54%,_rgba(26,_26,_26,_0.50)_100%)] opacity-50"
+		>
+		</div>
+		<div
+			class="absolute top-0 left-0 -z-10 h-[450px] w-full bg-(image:--gradient)"
+		>
+		</div>
+
+		<section class="relative container mx-auto max-w-5xl px-6 py-12 md:px-12">
+			<div class="grid items-center gap-12 md:grid-cols-2">
+				<div class="z-10" data-reveal style="--rd:0ms">
+					<div class="relative ps-12">
+						<div
+							class="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-white/50 to-transparent"
+						>
+						</div>
+						<h1 class="m-0">
+							<span class="block py-8 font-mono text-4xl text-white"
+								>{t("hero.greeting")}</span
+							>
+							<span
+								class="block h-px w-full bg-gradient-to-r from-white/40 to-transparent"
+								aria-hidden="true"></span>
+							<span class="text-primary block py-8 font-mono text-6xl">Tim</span>
+							<span class="sr-only">, {t("footer.tagline")}</span>
+						</h1>
+						<Socials
+							class="flex flex-wrap items-center gap-3 py-8"
+							label={t("a11y.social")}
+						/>
+					</div>
+				</div>
+
+				<div
+					class="z-10 flex justify-center md:justify-end"
+					data-reveal
+					style="--rd:140ms"
+				>
+					<div class="relative h-56 w-56 md:h-80 md:w-80">
+						<div
+							class="bg-background absolute inset-0 rounded-full border border-white/20 shadow-[0px_0px_36px_8px_rgba(0,0,0,0.25)]"
+						>
+						</div>
+						<div
+							class="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_100.04%_130.58%_at_31.37%_0.00%,_#D94A17_0%,_rgba(231.54,_85.68,_33.66,_0.55)_62%,_rgba(193.80,_133.96,_112.20,_0.10)_100%)]"
+						>
+						</div>
+						<Image
+							src={profilePicture}
+							alt="Tim Schulz"
+							class="absolute bottom-0 w-full rounded-full"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="container mx-auto max-w-5xl px-6 md:px-12">
+			<div class={panel} data-reveal style="--rd:240ms">
+				<div class="flex flex-col gap-6">
+					<h2 class="font-mono text-4xl leading-9 font-normal text-white">
+						{t("about.title")}
+					</h2>
+					<div class="grid gap-6 md:grid-cols-2">
+						<p class="font-sans text-base leading-normal text-white">{t("about.p1")}</p>
+						<p class="font-sans text-base leading-normal text-white">{t("about.p2")}</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<style>
+	@keyframes reveal-in {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+	[data-reveal] {
+		animation: reveal-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+		animation-delay: var(--rd, 0ms);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		[data-reveal] {
+			animation: none;
+		}
+	}
+</style>

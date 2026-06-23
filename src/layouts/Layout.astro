@@ -1,56 +1,157 @@
 ---
 import bgPattern from "../assets/bg-pattern.svg";
 import "../styles/global.css";
+import type { Lang, RouteKey } from "../i18n/ui";
+import { useTranslations, getRoute, getAlternates } from "../i18n/utils";
+import LanguageToggle from "../components/LanguageToggle.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+	lang: Lang;
+	routeKey: RouteKey;
+	title: string;
+	description: string;
+	ogType?: string;
+}
+
+const { lang, routeKey, title, description, ogType = "website" } = Astro.props;
+const t = useTranslations(lang);
+
+const site = Astro.site ?? new URL("https://timschulz.net");
+const alternates = getAlternates(routeKey);
+const canonical = new URL(alternates[lang], site).href;
+const absDe = new URL(alternates.de, site).href;
+const absEn = new URL(alternates.en, site).href;
+const ogImage = new URL("/profile.png", site).href;
+
+const ogLocale = lang === "de" ? "de_DE" : "en_US";
+const ogLocaleAlt = lang === "de" ? "en_US" : "de_DE";
+
+const personLd = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Tim Schulz",
+	url: site.href,
+	jobTitle: t("footer.tagline"),
+	image: ogImage,
+	email: "kontakt@timschulz.net",
+	sameAs: [
+		"https://github.com/TimSchulzRC",
+		"https://www.linkedin.com/in/tim-schulz-751407217/",
+		"https://www.youtube.com/@timschulz_de",
+		"https://www.instagram.com/tim_schulz_rc/",
+	],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Auto-select language on first visit; respect an explicit choice afterwards. -->
+		<script is:inline define:vars={{ lang, alt: { de: alternates.de, en: alternates.en } }}>
+			(function () {
+				try {
+					var stored = localStorage.getItem("preferred-lang");
+					var want =
+						stored ||
+						((navigator.language || "").toLowerCase().indexOf("de") === 0 ? "de" : "en");
+					if (want !== lang && alt[want]) {
+						location.replace(alt[want]);
+					}
+				} catch (e) {}
+			})();
+		</script>
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Tim Schulz" />
+		<meta name="theme-color" content="#1a1a1a" />
+		<meta name="generator" content={Astro.generator} />
+
+		<link rel="canonical" href={canonical} />
+		<link rel="alternate" hreflang="de" href={absDe} />
+		<link rel="alternate" hreflang="en" href={absEn} />
+		<link rel="alternate" hreflang="x-default" href={absDe} />
+
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content="Tim Schulz" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:locale:alternate" content={ogLocaleAlt} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:alt" content="Tim Schulz" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
 		<link
 			rel="preload"
-			href="/fonts/FiraMono-Regular.ttf"
+			href="/fonts/fira-mono/FiraMono-Regular.ttf"
 			as="font"
 			type="font/ttf"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/FiraMono-Medium.ttf"
+			href="/fonts/fira-mono/FiraMono-Medium.ttf"
 			as="font"
 			type="font/ttf"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/FiraMono-Bold.ttf"
+			href="/fonts/fira-sans/FiraSans-Regular.ttf"
 			as="font"
 			type="font/ttf"
 			crossorigin
 		/>
 
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<script
+			type="application/ld+json"
+			is:inline
+			set:html={JSON.stringify(personLd)}
+		/>
 	</head>
 	<body class="bg-background relative overflow-x-hidden">
+		<a
+			href="#main"
+			class="focus:bg-primary sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:px-4 focus:py-2 focus:font-mono focus:text-white"
+			>{t("a11y.skipToContent")}</a
+		>
+
 		<div
 			class="pointer-events-none absolute inset-0 -z-50 bg-top bg-repeat opacity-25"
 			style={`background-image: url(${bgPattern.src})`}
 		>
 		</div>
-		<header class="z-10 container mx-auto max-w-5xl px-6 md:px-12">
+
+		<header class="relative z-10 container mx-auto max-w-5xl px-6 md:px-12">
 			<nav class="flex items-center gap-6 py-6">
-				<span class="font-mono text-sm tracking-[0.35em] text-white/70"
-					>TIM SCHULZ</span
+				<a
+					href={getRoute("home", lang)}
+					class="font-mono text-sm tracking-[0.35em] text-white/70 transition-colors hover:text-white"
+					>TIM SCHULZ</a
 				>
-				<div
-					class="h-px flex-1 bg-gradient-to-r from-white/40 to-transparent"
-				>
-				</div>
+				<div class="h-px flex-1 bg-gradient-to-r from-white/40 to-transparent"></div>
+				<LanguageToggle lang={lang} alternates={alternates} />
 			</nav>
 		</header>
+
 		<slot />
+
+		<Footer lang={lang} alternates={alternates} />
 	</body>
 </html>

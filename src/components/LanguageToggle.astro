@@ -1,0 +1,44 @@
+---
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+	lang: Lang;
+	alternates: { de: string; en: string };
+}
+
+const { lang, alternates } = Astro.props;
+
+const active = "text-primary";
+const inactive = "text-white/50 hover:text-white transition-colors";
+---
+
+<div class="flex items-center gap-1.5 font-mono text-sm" aria-label="Sprache / Language">
+	<a
+		href={alternates.de}
+		hreflang="de"
+		data-lang-switch
+		data-lang="de"
+		class={lang === "de" ? active : inactive}
+		aria-current={lang === "de" ? "true" : undefined}>DE</a
+	>
+	<span class="text-white/25" aria-hidden="true">/</span>
+	<a
+		href={alternates.en}
+		hreflang="en"
+		data-lang-switch
+		data-lang="en"
+		class={lang === "en" ? active : inactive}
+		aria-current={lang === "en" ? "true" : undefined}>EN</a
+	>
+</div>
+
+<script>
+	// Record an explicit language choice so the auto-detect redirect respects it.
+	document.querySelectorAll<HTMLAnchorElement>("[data-lang-switch]").forEach((el) => {
+		el.addEventListener("click", () => {
+			try {
+				localStorage.setItem("preferred-lang", el.dataset.lang || "de");
+			} catch {}
+		});
+	});
+</script>

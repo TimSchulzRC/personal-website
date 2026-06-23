@@ -1,0 +1,82 @@
+---
+import Layout from "./Layout.astro";
+import type { Lang, RouteKey } from "../i18n/ui";
+import { useTranslations, getRoute } from "../i18n/utils";
+
+interface Props {
+	lang: Lang;
+	routeKey: RouteKey;
+	title: string;
+	description: string;
+	heading: string;
+}
+
+const { lang, routeKey, title, description, heading } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} routeKey={routeKey} title={title} description={description}>
+	<main
+		id="main"
+		class="relative z-10 container mx-auto max-w-3xl px-6 py-16 md:px-12"
+	>
+		<a
+			href={getRoute("home", lang)}
+			class="hover:text-primary font-mono text-sm text-white/50 transition-colors"
+			>← {t("back.home")}</a
+		>
+		<h1 class="mt-6 font-mono text-4xl text-white md:text-5xl">{heading}</h1>
+		<div class="legal mt-10">
+			<slot />
+		</div>
+	</main>
+</Layout>
+
+<style is:global>
+	.legal {
+		color: rgba(255, 255, 255, 0.78);
+		font-family: var(--font-sans);
+		line-height: 1.7;
+		max-width: 70ch;
+	}
+	.legal h2 {
+		font-family: var(--font-mono);
+		color: #fff;
+		font-size: 1.4rem;
+		line-height: 1.3;
+		margin-top: 2.5rem;
+		margin-bottom: 0.75rem;
+	}
+	.legal h3 {
+		font-family: var(--font-mono);
+		color: #fff;
+		font-size: 1.05rem;
+		margin-top: 1.75rem;
+		margin-bottom: 0.5rem;
+	}
+	.legal p {
+		margin-bottom: 1rem;
+	}
+	.legal ul {
+		margin: 0 0 1rem 1.25rem;
+		list-style: disc;
+	}
+	.legal li {
+		margin-bottom: 0.4rem;
+	}
+	.legal a {
+		color: var(--color-primary);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.legal a:hover {
+		opacity: 0.85;
+	}
+	.legal strong {
+		color: #fff;
+	}
+	.legal .muted {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.875rem;
+	}
+</style>

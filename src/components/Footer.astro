@@ -1,0 +1,51 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations, getRoute } from "../i18n/utils";
+import Socials from "./Socials.astro";
+import LanguageToggle from "./LanguageToggle.astro";
+
+interface Props {
+	lang: Lang;
+	/** Localized URLs of the current page, for the language switch. */
+	alternates: { de: string; en: string };
+}
+
+const { lang, alternates } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const legalLink = "text-white/60 hover:text-primary transition-colors";
+---
+
+<footer class="relative z-10 mt-32">
+	<div class="container mx-auto max-w-5xl px-6 md:px-12">
+		<div class="h-px w-full bg-gradient-to-r from-white/30 to-transparent"></div>
+
+		<div
+			class="flex flex-col gap-10 py-12 md:flex-row md:items-start md:justify-between"
+		>
+			<div>
+				<div class="font-mono text-xl text-white">Tim Schulz</div>
+				<Socials
+					class="mt-6 flex flex-wrap items-center gap-3"
+					label={t("a11y.social")}
+				/>
+			</div>
+
+			<div class="flex flex-col gap-5 md:items-end">
+				<LanguageToggle lang={lang} alternates={alternates} />
+				<nav
+					aria-label={t("footer.legal")}
+					class="flex gap-6 font-mono text-sm"
+				>
+					<a href={getRoute("imprint", lang)} class={legalLink}>{t("nav.imprint")}</a>
+					<a href={getRoute("privacy", lang)} class={legalLink}>{t("nav.privacy")}</a>
+				</nav>
+			</div>
+		</div>
+
+		<p class="pb-10 font-mono text-xs text-white/40">
+			© {year} Tim Schulz. {t("footer.rights")}
+		</p>
+	</div>
+</footer>
