@@ -51,13 +51,18 @@ const personLd = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Auto-select language on first visit; respect an explicit choice afterwards. -->
-		<script is:inline define:vars={{ lang, alt: { de: alternates.de, en: alternates.en } }}>
+		<script
+			is:inline
+			define:vars={{ lang, alt: { de: alternates.de, en: alternates.en } }}
+		>
 			(function () {
 				try {
 					var stored = localStorage.getItem("preferred-lang");
 					var want =
 						stored ||
-						((navigator.language || "").toLowerCase().indexOf("de") === 0 ? "de" : "en");
+						((navigator.language || "").toLowerCase().indexOf("de") === 0
+							? "de"
+							: "en");
 					if (want !== lang && alt[want]) {
 						location.replace(alt[want]);
 					}
@@ -145,7 +150,8 @@ const personLd = {
 					class="font-mono text-sm tracking-[0.35em] text-white/70 transition-colors hover:text-white"
 					>TIM SCHULZ</a
 				>
-				<div class="h-px flex-1 bg-gradient-to-r from-white/40 to-transparent"></div>
+				<div class="h-px flex-1 bg-gradient-to-r from-white/40 to-transparent">
+				</div>
 				<LanguageToggle lang={lang} alternates={alternates} />
 			</nav>
 		</header>

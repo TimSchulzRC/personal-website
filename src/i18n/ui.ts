@@ -9,7 +9,7 @@ export type Lang = keyof typeof languages;
 // Maps a logical page to its localized URL path, used for routing + hreflang.
 export const routes = {
 	home: { de: "/", en: "/en/" },
-	imprint: { de: "/impressum/", en: "/en/imprint/" },
+	imprint: { de: "/impressum/", en: "/en/legal/" },
 	privacy: { de: "/datenschutz/", en: "/en/privacy/" },
 } as const;
 
@@ -22,7 +22,8 @@ export const ui = {
 			"Tim Schulz: Softwareentwickler und IT-Berater aus Deutschland. Ich entwickle moderne Websites und Webanwendungen mit Fokus auf durchdachte User Experience.",
 		"meta.home.title": "Tim Schulz – Softwareentwickler & IT-Berater",
 		"meta.imprint.title": "Impressum – Tim Schulz",
-		"meta.imprint.description": "Impressum und Anbieterkennzeichnung von Tim Schulz.",
+		"meta.imprint.description":
+			"Impressum und Anbieterkennzeichnung von Tim Schulz.",
 		"meta.privacy.title": "Datenschutzerklärung – Tim Schulz",
 		"meta.privacy.description":
 			"Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten auf timschulz.net.",
@@ -32,7 +33,7 @@ export const ui = {
 		"about.p1":
 			"Ich habe Informatik studiert und entwickle seit Jahren Websites und Webanwendungen. Mein Fokus liegt auf einer durchdachten User Experience – Anwendungen sollen nicht nur funktionieren, sondern sich gut bedienen lassen.",
 		"about.p2":
-			"Als IT-Berater und Anwendungsentwickler setze ich Projekte in unterschiedlichsten Bereichen um: Von der Restrukturierung gewachsener Systeme bis hin zu individuellen Webanwendungen.",
+			"Als Entwickler und IT-Berater setze ich Projekte in unterschiedlichsten Bereichen um: Von der Restrukturierung gewachsener Systeme bis hin zu individuellen Webanwendungen.",
 
 		"skills.title": "Skills",
 		"skills.websites.title": "Websites",
@@ -62,8 +63,9 @@ export const ui = {
 		"meta.description":
 			"Tim Schulz: software developer and IT consultant from Germany. I build modern websites and web applications with a focus on thoughtful user experience.",
 		"meta.home.title": "Tim Schulz – Software Developer & IT Consultant",
-		"meta.imprint.title": "Imprint – Tim Schulz",
-		"meta.imprint.description": "Imprint and provider information for Tim Schulz.",
+		"meta.imprint.title": "Legal – Tim Schulz",
+		"meta.imprint.description":
+			"Legal notice and provider information for Tim Schulz.",
 		"meta.privacy.title": "Privacy Policy – Tim Schulz",
 		"meta.privacy.description":
 			"Information on data protection and the processing of personal data on timschulz.net.",
@@ -73,7 +75,7 @@ export const ui = {
 		"about.p1":
 			"I studied computer science and have been building websites and web applications for years. My focus is on a thoughtful user experience: software should not only work, it should be a pleasure to use.",
 		"about.p2":
-			"As an IT consultant and application developer I deliver projects across a wide range of domains: from restructuring legacy systems to building bespoke web applications.",
+			"As a developer and IT consultant I deliver projects across a wide range of domains: from restructuring legacy systems to building bespoke web applications.",
 
 		"skills.title": "Skills",
 		"skills.websites.title": "Websites",
@@ -90,7 +92,7 @@ export const ui = {
 		"footer.rights": "All rights reserved.",
 		"footer.legal": "Legal",
 
-		"nav.imprint": "Imprint",
+		"nav.imprint": "Legal",
 		"nav.privacy": "Privacy",
 		"lang.switch": "Deutsch",
 		"lang.label": "Language",

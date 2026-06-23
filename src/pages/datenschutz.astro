@@ -1,6 +1,6 @@
 ---
-import Legal from "../layouts/Legal.astro";
 import { useTranslations } from "../i18n/utils";
+import Legal from "../layouts/Legal.astro";
 
 const lang = "de";
 const t = useTranslations(lang);
@@ -17,7 +17,6 @@ const t = useTranslations(lang);
 	<p>
 		Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
 		Tim Schulz<br />
-		[Straße und Hausnummer], [PLZ und Ort]<br />
 		E-Mail: <a href="mailto:kontakt@timschulz.net">kontakt@timschulz.net</a>
 	</p>
 
@@ -30,13 +29,13 @@ const t = useTranslations(lang);
 
 	<h2>3. Hosting und Server-Logfiles</h2>
 	<p>
-		Die Website wird bei einem externen Dienstleister gehostet: [Name und
-		Anschrift des Hosting-Providers]. Beim Aufruf der Seite verarbeitet der
-		Hosting-Anbieter technisch notwendige Zugriffsdaten (Server-Logfiles), die
+		Diese Website wird bei der Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA
+		91789, USA („Vercel") gehostet. Beim Aufruf der Seite verarbeitet Vercel als
+		Auftragsverarbeiter technisch notwendige Zugriffsdaten (Server-Logfiles), die
 		dein Browser automatisch übermittelt:
 	</p>
 	<ul>
-		<li>anonymisierte bzw. gekürzte IP-Adresse</li>
+		<li>IP-Adresse des zugreifenden Geräts</li>
 		<li>Datum und Uhrzeit des Zugriffs</li>
 		<li>aufgerufene Seite / Datei</li>
 		<li>verwendeter Browser und Betriebssystem</li>
@@ -44,40 +43,54 @@ const t = useTranslations(lang);
 	</ul>
 	<p>
 		Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse
-		liegt in der technisch fehlerfreien Bereitstellung und Sicherheit der
-		Website. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.
+		liegt in der technisch fehlerfreien, sicheren und performanten
+		Bereitstellung der Website. Mit Vercel besteht ein Vertrag zur
+		Auftragsverarbeitung gemäß Art. 28 DSGVO.
+	</p>
+	<p>
+		Vercel ist ein Anbieter mit Sitz in den USA. Dabei können personenbezogene
+		Daten (insbesondere die IP-Adresse) in die USA übermittelt werden. Die
+		Übermittlung wird durch die EU-Standardvertragsklauseln (Art. 46 DSGVO) und –
+		soweit Vercel entsprechend zertifiziert ist – durch das EU-U.S. Data Privacy
+		Framework abgesichert. Weitere Informationen findest du in der
+		Datenschutzerklärung von Vercel: <a
+			href="https://vercel.com/legal/privacy-policy"
+			target="_blank"
+			rel="noopener noreferrer">vercel.com/legal/privacy-policy</a
+		>.
 	</p>
 
 	<h2>4. Schriftarten (Fonts)</h2>
 	<p>
 		Die verwendeten Schriftarten (Fira Mono und Fira Sans) werden lokal vom
-		eigenen Server ausgeliefert. Es besteht <strong>keine</strong> Verbindung zu
-		Servern Dritter (z. B. Google Fonts), und es werden dabei keine
-		personenbezogenen Daten an Dritte übertragen.
+		eigenen Server ausgeliefert. Es besteht <strong>keine</strong> Verbindung zu Servern
+		Dritter (z. B. Google Fonts), und es werden dabei keine personenbezogenen Daten
+		an Dritte übertragen.
 	</p>
 
 	<h2>5. Kontaktaufnahme per E-Mail</h2>
 	<p>
-		Wenn du mich per E-Mail kontaktierst, werden deine Angaben
-		(E-Mail-Adresse, Inhalt der Nachricht) zur Bearbeitung der Anfrage
-		gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Die
-		Daten werden gelöscht, sobald sie für die Zweckerreichung nicht mehr
-		erforderlich sind.
+		Wenn du mich per E-Mail kontaktierst, werden deine Angaben (E-Mail-Adresse,
+		Inhalt der Nachricht) zur Bearbeitung der Anfrage gespeichert.
+		Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Die Daten werden
+		gelöscht, sobald sie für die Zweckerreichung nicht mehr erforderlich sind.
 	</p>
 
 	<h2>6. Externe Links und soziale Netzwerke</h2>
 	<p>
 		Diese Website verlinkt auf externe Profile (GitHub, LinkedIn, YouTube,
 		Instagram). Es handelt sich um einfache Verlinkungen, es werden keine
-		Inhalte dieser Anbieter eingebunden. Erst beim Anklicken eines Links wirst du
-		auf die jeweilige Plattform weitergeleitet, deren Datenschutzbestimmungen
+		Inhalte dieser Anbieter eingebunden. Erst beim Anklicken eines Links wirst
+		du auf die jeweilige Plattform weitergeleitet, deren Datenschutzbestimmungen
 		dann gelten.
 	</p>
 
 	<h2>7. Deine Rechte</h2>
 	<p>Du hast jederzeit das Recht auf:</p>
 	<ul>
-		<li>Auskunft über die zu deiner Person gespeicherten Daten (Art. 15 DSGVO)</li>
+		<li>
+			Auskunft über die zu deiner Person gespeicherten Daten (Art. 15 DSGVO)
+		</li>
 		<li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
 		<li>Löschung (Art. 17 DSGVO)</li>
 		<li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
@@ -92,12 +105,7 @@ const t = useTranslations(lang);
 	<h2>8. SSL-/TLS-Verschlüsselung</h2>
 	<p>
 		Diese Seite nutzt aus Sicherheitsgründen eine SSL-/TLS-Verschlüsselung. Eine
-		verschlüsselte Verbindung erkennst du am „https://" in der Adresszeile deines
-		Browsers.
-	</p>
-
-	<p class="muted">
-		Hinweis: Bitte ergänze die markierten Platzhalter (Anschrift, Hosting-Anbieter)
-		und lass die Erklärung bei Bedarf rechtlich prüfen.
+		verschlüsselte Verbindung erkennst du am „https://" in der Adresszeile
+		deines Browsers.
 	</p>
 </Legal>

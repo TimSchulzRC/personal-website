@@ -1,4 +1,11 @@
-import { ui, defaultLang, routes, type Lang, type UIKey, type RouteKey } from "./ui";
+import {
+	ui,
+	defaultLang,
+	routes,
+	type Lang,
+	type UIKey,
+	type RouteKey,
+} from "./ui";
 
 /** Derive the active language from the request URL (anything under /en/ is English). */
 export function getLangFromUrl(url: URL): Lang {

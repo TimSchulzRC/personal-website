@@ -1,6 +1,6 @@
 ---
-import Legal from "../layouts/Legal.astro";
 import { useTranslations } from "../i18n/utils";
+import Legal from "../layouts/Legal.astro";
 
 const lang = "de";
 const t = useTranslations(lang);
@@ -28,7 +28,6 @@ const t = useTranslations(lang);
 	<h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
 	<p>
 		Tim Schulz<br />
-		[Anschrift wie oben]
 	</p>
 
 	<h2>Haftung für Inhalte</h2>
@@ -70,10 +69,5 @@ const t = useTranslations(lang);
 	<p>
 		Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor
 		einer Verbraucherschlichtungsstelle teilzunehmen.
-	</p>
-
-	<p class="muted">
-		Hinweis: Bitte ersetze die mit eckigen Klammern markierten Platzhalter
-		(Anschrift, ggf. Telefon) vor der Veröffentlichung durch deine echten Daten.
 	</p>
 </Legal>

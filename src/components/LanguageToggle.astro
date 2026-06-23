@@ -12,7 +12,10 @@ const active = "text-primary";
 const inactive = "text-white/50 hover:text-white transition-colors";
 ---
 
-<div class="flex items-center gap-1.5 font-mono text-sm" aria-label="Sprache / Language">
+<div
+	class="flex items-center gap-1.5 font-mono text-sm"
+	aria-label="Sprache / Language"
+>
 	<a
 		href={alternates.de}
 		hreflang="de"
@@ -34,11 +37,13 @@ const inactive = "text-white/50 hover:text-white transition-colors";
 
 <script>
 	// Record an explicit language choice so the auto-detect redirect respects it.
-	document.querySelectorAll<HTMLAnchorElement>("[data-lang-switch]").forEach((el) => {
-		el.addEventListener("click", () => {
-			try {
-				localStorage.setItem("preferred-lang", el.dataset.lang || "de");
-			} catch {}
+	document
+		.querySelectorAll<HTMLAnchorElement>("[data-lang-switch]")
+		.forEach((el) => {
+			el.addEventListener("click", () => {
+				try {
+					localStorage.setItem("preferred-lang", el.dataset.lang || "de");
+				} catch {}
+			});
 		});
-	});
 </script>
