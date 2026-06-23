@@ -23,7 +23,7 @@ const alternates = getAlternates(routeKey);
 const canonical = new URL(alternates[lang], site).href;
 const absDe = new URL(alternates.de, site).href;
 const absEn = new URL(alternates.en, site).href;
-const ogImage = new URL("/profile.png", site).href;
+const ogImage = new URL("/og-image.png", site).href;
 
 const ogLocale = lang === "de" ? "de_DE" : "en_US";
 const ogLocaleAlt = lang === "de" ? "en_US" : "de_DE";
@@ -95,6 +95,8 @@ const personLd = {
 		<meta property="og:locale" content={ogLocale} />
 		<meta property="og:locale:alternate" content={ogLocaleAlt} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="Tim Schulz" />
 
 		<!-- Twitter -->
