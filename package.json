@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check --write ."
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -14,9 +17,9 @@
     "@tailwindcss/vite": "^4.3.1",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.0.0",
-    "prettier": "^3.8.4",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.1"
   }
 }

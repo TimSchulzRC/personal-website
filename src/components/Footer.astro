@@ -5,9 +5,9 @@ import Socials from "./Socials.astro";
 import LanguageToggle from "./LanguageToggle.astro";
 
 interface Props {
-	lang: Lang;
-	/** Localized URLs of the current page, for the language switch. */
-	alternates: { de: string; en: string };
+  lang: Lang;
+  /** Localized URLs of the current page, for the language switch. */
+  alternates: { de: string; en: string };
 }
 
 const { lang, alternates } = Astro.props;

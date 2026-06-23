@@ -6,14 +6,14 @@ import { useTranslations } from "../i18n/utils";
 import Socials from "./Socials.astro";
 
 interface Props {
-	lang: Lang;
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const panel =
-	"relative w-full bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm";
+  "relative w-full bg-[radial-gradient(ellipse_113.17%_241.11%_at_41.02%_112.41%,_rgba(26,_26,_26,_0.20)_0%,_rgba(126,_126,_126,_0.14)_100%)] p-8 shadow-[0px_0px_70px_10px_rgba(198,113,83,0.25)] outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm";
 ---
 
 <main id="main">
