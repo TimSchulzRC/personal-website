@@ -5,6 +5,7 @@ import type { Lang, RouteKey } from "../i18n/ui";
 import { useTranslations, getRoute, getAlternates } from "../i18n/utils";
 import LanguageToggle from "../components/LanguageToggle.astro";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
 	lang: Lang;
@@ -159,5 +160,7 @@ const personLd = {
 		<slot />
 
 		<Footer lang={lang} alternates={alternates} />
+
+		<Analytics />
 	</body>
 </html>
