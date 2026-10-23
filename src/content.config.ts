@@ -61,6 +61,8 @@ const blog = defineCollection({
         pubDate: new Date(item.pubDate),
         categories: [item.category ?? []].flat(),
         excerpt: excerpt(content),
+        // The first image in a Medium post is usually its cover.
+        image: content.match(/<img[^>]*src="([^"]+)"/)?.[1],
         content,
       };
     });
@@ -71,6 +73,7 @@ const blog = defineCollection({
     pubDate: z.date(),
     categories: z.array(z.string()),
     excerpt: z.string(),
+    image: z.url().optional(),
     content: z.string(),
   }),
 });

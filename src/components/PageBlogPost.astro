@@ -3,6 +3,7 @@ import { getImage } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, getRoute } from "../i18n/utils";
+import ReadingBackdrop from "./ReadingBackdrop.astro";
 
 interface Props {
   lang: Lang;
@@ -33,6 +34,8 @@ for (const src of imageSrcs) {
 	id="main"
 	class="relative z-10 container mx-auto max-w-3xl px-6 py-16 md:px-12"
 >
+	<ReadingBackdrop />
+
 	<a
 		href={getRoute("blog", lang)}
 		class="hover:text-primary font-mono text-sm text-white/50 transition-colors"
