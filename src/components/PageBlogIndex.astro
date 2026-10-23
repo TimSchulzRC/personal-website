@@ -1,0 +1,64 @@
+---
+import { getCollection } from "astro:content";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, getRoute } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
+---
+
+<main
+	id="main"
+	class="relative z-10 container mx-auto max-w-3xl px-6 py-16 md:px-12"
+>
+	<a
+		href={getRoute("home", lang)}
+		class="hover:text-primary font-mono text-sm text-white/50 transition-colors"
+		>← {t("back.home")}</a
+	>
+	<h1 class="mt-6 font-mono text-4xl text-white md:text-5xl">
+		{t("blog.title")}
+	</h1>
+
+	{
+		posts.length === 0 ? (
+			<p class="mt-10 font-sans text-white/60">{t("blog.empty")}</p>
+		) : (
+			<ul class="mt-10 flex flex-col gap-6">
+				{posts.map((post) => (
+					<li>
+						<article class="group relative p-6 outline-1 outline-offset-[-1px] outline-white/20 backdrop-blur-sm transition-colors hover:outline-white/40">
+							<time
+								datetime={post.data.pubDate.toISOString()}
+								class="font-mono text-xs text-white/50"
+							>
+								{dateFormat.format(post.data.pubDate)}
+							</time>
+							<h2 class="group-hover:text-primary mt-2 font-mono text-xl text-white transition-colors">
+								<a
+									href={`${getRoute("blog", lang)}${post.id}/`}
+									class="after:absolute after:inset-0"
+								>
+									{post.data.title}
+								</a>
+							</h2>
+							<p class="mt-3 font-sans text-base leading-normal text-white/70">
+								{post.data.excerpt}
+							</p>
+						</article>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</main>

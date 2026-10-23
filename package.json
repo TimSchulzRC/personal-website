@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.3.1",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.0.0",
+    "fast-xml-parser": "^5.11.2",
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {

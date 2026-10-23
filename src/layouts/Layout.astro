@@ -13,14 +13,25 @@ interface Props {
   title: string;
   description: string;
   ogType?: string;
+  /** Localized URLs of this page, if they differ from the route's base paths. */
+  alternates?: { de: string; en: string };
+  /** Absolute URL of the original, for content first published elsewhere. */
+  canonicalUrl?: string;
 }
 
-const { lang, routeKey, title, description, ogType = "website" } = Astro.props;
+const {
+  lang,
+  routeKey,
+  title,
+  description,
+  ogType = "website",
+  canonicalUrl,
+} = Astro.props;
 const t = useTranslations(lang);
 
 const site = Astro.site ?? new URL("https://timschulz.net");
-const alternates = getAlternates(routeKey);
-const canonical = new URL(alternates[lang], site).href;
+const alternates = Astro.props.alternates ?? getAlternates(routeKey);
+const canonical = canonicalUrl ?? new URL(alternates[lang], site).href;
 const absDe = new URL(alternates.de, site).href;
 const absEn = new URL(alternates.en, site).href;
 const ogImage = new URL("/og-image.png", site).href;
@@ -80,9 +91,15 @@ const personLd = {
     <meta name="generator" content={Astro.generator} />
 
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="de" href={absDe} />
-    <link rel="alternate" hreflang="en" href={absEn} />
-    <link rel="alternate" hreflang="x-default" href={absDe} />
+    {
+      !canonicalUrl && (
+        <>
+          <link rel="alternate" hreflang="de" href={absDe} />
+          <link rel="alternate" hreflang="en" href={absEn} />
+          <link rel="alternate" hreflang="x-default" href={absDe} />
+        </>
+      )
+    }
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -159,11 +176,9 @@ const personLd = {
         <div class="h-px flex-1 bg-linear-to-r from-white/40 to-transparent">
         </div>
         <a
-          href="https://medium.com/@tim-schulz"
-          target="_blank"
-          rel="noopener noreferrer"
+          href={getRoute("blog", lang)}
           class="hover:text-primary font-mono text-sm text-white/70 transition-colors"
-          >Blog</a
+          >{t("nav.blog")}</a
         >
         <span class="text-white/50" aria-hidden="true">|</span>
         <LanguageToggle lang={lang} alternates={alternates} />

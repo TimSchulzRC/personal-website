@@ -1,0 +1,32 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PageBlogPost from "../../components/PageBlogPost.astro";
+import { getAlternates } from "../../i18n/utils";
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const lang = "de";
+const { post } = Astro.props;
+const blog = getAlternates("blog");
+---
+
+<Layout
+	lang={lang}
+	routeKey="blog"
+	alternates={{ de: `${blog.de}${post.id}/`, en: `${blog.en}${post.id}/` }}
+	canonicalUrl={post.data.url}
+	title={`${post.data.title} – Tim Schulz`}
+	description={post.data.excerpt}
+	ogType="article"
+>
+	<PageBlogPost lang={lang} post={post} />
+</Layout>

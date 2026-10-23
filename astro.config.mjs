@@ -15,8 +15,14 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  image: {
+    domains: ["cdn-images-1.medium.com"],
+  },
   integrations: [
     sitemap({
+      // Blog posts declare their Medium original as canonical, so they don't
+      // belong in this site's sitemap.
+      filter: (page) => !/\/blog\/[^/]+\/$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: "de",
         locales: {
