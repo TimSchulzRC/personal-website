@@ -57,12 +57,24 @@ const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
 								/>
 							)}
 							<div lang={post.contentLang !== lang ? post.contentLang : undefined}>
-							<time
-								datetime={post.pubDate.toISOString()}
-								class="font-mono text-xs text-white/50"
-							>
-								{dateFormat.format(post.pubDate)}
-							</time>
+							<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs">
+								<time
+									datetime={post.pubDate.toISOString()}
+									class="text-white/50"
+								>
+									{dateFormat.format(post.pubDate)}
+								</time>
+								{lang === "de" && (
+									<span
+										lang={lang}
+										class="border-primary/60 text-white/70 border px-1.5 py-0.5"
+									>
+										{post.contentLang === "de"
+											? t("blog.translatedBadge")
+											: t("blog.englishBadge")}
+									</span>
+								)}
+							</div>
 							<h2 class="group-hover:text-primary mt-2 font-mono text-xl text-white transition-colors">
 								<a
 									href={`${getRoute("blog", lang)}${post.id}/`}
