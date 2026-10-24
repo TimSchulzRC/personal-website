@@ -1,15 +1,15 @@
 ---
 import { getImage } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
 import Layout from "./Layout.astro";
 import MediumLink from "../components/MediumLink.astro";
 import ReadingBackdrop from "../components/ReadingBackdrop.astro";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, getRoute, getAlternates } from "../i18n/utils";
+import type { LocalizedPost } from "../lib/blog";
 
 interface Props {
   lang: Lang;
-  post: CollectionEntry<"blog">;
+  post: LocalizedPost;
 }
 
 const { lang, post } = Astro.props;
@@ -21,15 +21,20 @@ const alternates = {
   de: `${blog.de}${post.id}/`,
   en: `${blog.en}${post.id}/`,
 };
-// Both language versions show the same article, so the English URL is the
-// one search engines should index.
-const canonical = new URL(alternates.en, site).href;
+const originalUrl = new URL(alternates.en, site).href;
+// With a translation, each language version is its own page for search
+// engines. Without one, the German page repeats the English article and
+// points to it as canonical; passing it also suppresses hreflang links.
+const canonical = post.hasTranslation
+  ? new URL(alternates[lang], site).href
+  : originalUrl;
+const isTranslation = post.contentLang !== "en";
 
 const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
 
 // Download Medium images at build time and serve them from this site, so
 // visitors' browsers never contact Medium.
-let content = post.data.content;
+let content = post.content;
 const imageSrcs = new Set(
   [...content.matchAll(/<img[^>]*src="([^"]+)"/g)].map((m) => m[1]),
 );
@@ -43,9 +48,9 @@ for (const src of imageSrcs) {
 
 // Social networks don't reliably support WebP previews, so use JPEG.
 const cover =
-  post.data.image &&
+  post.image &&
   (await getImage({
-    src: post.data.image,
+    src: post.image,
     inferSize: true,
     width: 1200,
     format: "jpeg",
@@ -55,22 +60,25 @@ const ogImage = cover
       src: new URL(cover.src, site).href,
       width: Number(cover.attributes.width),
       height: Number(cover.attributes.height),
-      alt: post.data.title,
+      alt: post.title,
     }
   : undefined;
 
 const postLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: post.data.title,
-  description: post.data.excerpt,
+  headline: post.title,
+  description: post.excerpt,
   url: canonical,
   mainEntityOfPage: canonical,
-  datePublished: post.data.pubDate.toISOString(),
-  dateModified: post.data.updated.toISOString(),
+  datePublished: post.pubDate.toISOString(),
+  dateModified: post.updated.toISOString(),
   image: ogImage ? [ogImage.src] : undefined,
-  keywords: post.data.categories.join(", ") || undefined,
-  sameAs: post.data.url,
+  keywords: post.categories.join(", ") || undefined,
+  inLanguage: post.contentLang,
+  ...(isTranslation
+    ? { translationOfWork: { "@type": "BlogPosting", url: originalUrl } }
+    : { sameAs: post.url }),
   author: {
     "@type": "Person",
     name: "Tim Schulz",
@@ -83,23 +91,23 @@ const postLd = {
 	lang={lang}
 	routeKey="blog"
 	alternates={alternates}
-	canonicalUrl={canonical}
-	title={`${post.data.title} – Tim Schulz`}
-	description={post.data.excerpt}
+	canonicalUrl={post.hasTranslation ? undefined : canonical}
+	title={`${post.title} – Tim Schulz`}
+	description={post.excerpt}
 	ogType="article"
 	ogImage={ogImage}
 >
 	<Fragment slot="head">
 		<meta
 			property="article:published_time"
-			content={post.data.pubDate.toISOString()}
+			content={post.pubDate.toISOString()}
 		/>
 		<meta
 			property="article:modified_time"
-			content={post.data.updated.toISOString()}
+			content={post.updated.toISOString()}
 		/>
 		<meta property="article:author" content={site.href} />
-		{post.data.categories.map((tag) => <meta property="article:tag" content={tag} />)}
+		{post.categories.map((tag) => <meta property="article:tag" content={tag} />)}
 		<script
 			type="application/ld+json"
 			is:inline
@@ -119,22 +127,50 @@ const postLd = {
 			>← {t("blog.back")}</a
 		>
 
-		<article class="mt-6">
+		<article
+			class="mt-6"
+			lang={post.contentLang !== lang ? post.contentLang : undefined}
+		>
 			<header>
 				<time
-					datetime={post.data.pubDate.toISOString()}
+					datetime={post.pubDate.toISOString()}
 					class="font-mono text-xs text-white/50"
 				>
-					{dateFormat.format(post.data.pubDate)}
+					{dateFormat.format(post.pubDate)}
 				</time>
 				<h1 class="mt-2 font-mono text-3xl text-white md:text-4xl">
-					{post.data.title}
+					{post.title}
 				</h1>
 				<MediumLink
-					href={post.data.url}
+					href={post.url}
 					label={t("blog.readOnMedium")}
 					class="mt-4"
 				/>
+				{
+					lang === "de" && (
+						<p
+							lang={lang}
+							class="border-primary/60 mt-8 border-l-2 bg-white/5 px-4 py-3 font-sans text-sm text-white/70"
+						>
+							{isTranslation ? (
+								<>
+									{t("blog.machineTranslated")}{" "}
+									<a
+										href={alternates.en}
+										hreflang="en"
+										data-lang-switch
+										data-lang="en"
+										class="text-primary underline underline-offset-2 hover:opacity-85"
+									>
+										{t("blog.readOriginal")} →
+									</a>
+								</>
+							) : (
+								t("blog.onlyEnglish")
+							)}
+						</p>
+					)
+				}
 			</header>
 
 			<div
@@ -147,7 +183,7 @@ const postLd = {
 			>
 				<span class="text-white/50">{t("blog.onMedium")}</span>
 				<a
-					href={post.data.url}
+					href={post.url}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-primary hover:opacity-85">{t("blog.readOnMedium")} →</a

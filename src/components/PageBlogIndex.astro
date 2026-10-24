@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, getRoute } from "../i18n/utils";
+import { getPosts } from "../lib/blog";
 import MediumLink from "./MediumLink.astro";
 import ReadingBackdrop from "./ReadingBackdrop.astro";
 
@@ -13,9 +13,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
-);
+const posts = await getPosts(lang);
 
 const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
 ---
@@ -48,9 +46,9 @@ const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
 				{posts.map((post) => (
 					<li>
 						<article class="group relative flex flex-col gap-6 p-6 outline-1 outline-offset-[-1px] outline-white/20 transition-colors hover:outline-white/40 sm:flex-row">
-							{post.data.image && (
+							{post.image && (
 								<Image
-									src={post.data.image}
+									src={post.image}
 									alt=""
 									inferSize
 									width={448}
@@ -58,23 +56,23 @@ const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
 									class="aspect-[3/2] w-full shrink-0 self-start object-cover sm:w-56"
 								/>
 							)}
-							<div>
+							<div lang={post.contentLang !== lang ? post.contentLang : undefined}>
 							<time
-								datetime={post.data.pubDate.toISOString()}
+								datetime={post.pubDate.toISOString()}
 								class="font-mono text-xs text-white/50"
 							>
-								{dateFormat.format(post.data.pubDate)}
+								{dateFormat.format(post.pubDate)}
 							</time>
 							<h2 class="group-hover:text-primary mt-2 font-mono text-xl text-white transition-colors">
 								<a
 									href={`${getRoute("blog", lang)}${post.id}/`}
 									class="after:absolute after:inset-0"
 								>
-									{post.data.title}
+									{post.title}
 								</a>
 							</h2>
 							<p class="mt-3 font-sans text-base leading-normal text-white/70">
-								{post.data.excerpt}
+								{post.excerpt}
 							</p>
 							</div>
 						</article>

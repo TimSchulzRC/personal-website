@@ -1,0 +1,16 @@
+---
+title: Der einzige Grund, keinen Apple HomePod mini zu kaufen
+sourceUpdated: 2023-11-03T10:24:35.396Z
+---
+
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/0*uEOzU0Zm1NXZQxuR" /><figcaption>Foto von <a href="https://unsplash.com/@chamavito?utm_source=medium&amp;utm_medium=referral">Victor Carvalho</a> auf <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral">Unsplash</a></figcaption></figure>
+<p>Du denkst vielleicht: „Na ja, man sollte ihn nicht kaufen, weil er so teuer ist, vor allem im Vergleich zu Geräten wie Amazons Echo oder Googles Nest-Lautsprechern.“<br>Für viele Leute mag das der Grund sein. Aber nicht, wenn du ohnehin bereit bist, so viel Geld für einen HomePod mini auszugeben, und dich ein smarter Lautsprecher reizt, der dein Apple-Ökosystem erweitert.</p>
+<p>Bevor ich zu dem Grund komme, warum ich mir keinen Apple HomePod kaufe, möchte ich kurz erzählen, wofür ich meinen Amazon Echo gerne nutze. Meistens für ziemlich einfache Dinge, die man eben mit einem smarten Assistenten macht: die aktuelle Außentemperatur abfragen, meine smarten Glühbirnen steuern und einen Song abspielen lassen, der mir gerade im Kopf herumgeht. Das ist nicht viel, aber ich habe mich einfach daran gewöhnt, diese Dinge mit meinem smarten Lautsprecher zu erledigen. Weil die Aufgaben so simpel sind, sollte der HomePod damit eigentlich kein Problem haben. Ich meine, es ist Apple – was kann es nicht, oder?</p>
+<p>Ich selbst stecke ziemlich tief im Apple-Ökosystem. Ich nutze einen Mac und ein iPhone als meine Hauptgeräte, privat wie beruflich, besitze ein iPad und habe mir vor Kurzem eine Apple Watch gekauft. Du fragst dich also vielleicht, warum ich mir keinen HomePod holen will. Das Absurde ist: Ich will ja, aber ich kann nicht.</p>
+<p>So sehr ich die Vorteile des Apple-Ökosystems genieße, so gerne nutze ich auch Spotify. Du ahnst vielleicht schon, worauf das hinausläuft.</p>
+<p>Ich bin mit Spotify zufrieden. Warum sollte ich zu einem anderen Musikstreaming-Dienst wechseln? Ich kann alle Songs und Podcasts hören, die ich möchte, ich zahle für das Family-Premium-Abo, das ich gerne mit meiner Familie teile, und ich kann es auf jedem Gerät nutzen.</p>
+<p>Na ja, nicht ganz. Es gibt eine Ausnahme, ein Gerät, auf dem es nicht läuft. Du hast es erraten: den HomePod.</p>
+<p>Auf dem Amazon Echo habe ich den Spotify-Skill installiert und als Standard für Musik und Podcasts festgelegt. Damit streamt er jedes Mal über mein Spotify-Abo, wenn ich „Alexa, spiel …“ sage.</p>
+<p>Beim Apple HomePod geht das nicht. Natürlich kannst du „Hey Siri, spiel …“ sagen, aber der HomePod versucht standardmäßig, das Gewünschte über Apple Music abzuspielen. Wenn du dort kein Abo hast, stehst du im Regen.</p>
+<p>Es gibt die Möglichkeit, per Siri Musik von Deezer abzuspielen. Wenn du aber per Siri Musik von Spotify auf einem HomePod abspielen willst, landest du vermutlich nur in irgendeinem Forum, zusammen mit unzähligen anderen Apple-Fans, die sich über ihre aussichtslose Lage beschweren. Oder du verbringst Stunden damit, den besten Workaround zu finden.</p>
+<p>Ich weiß nicht, ob das Problem bei Apple oder bei Spotify liegt (wahrscheinlich bei beiden), aber solange ich Spotify nicht ohne Umstände auf einem HomePod nutzen kann, ist der HomePod mini für mich keine Option.</p>

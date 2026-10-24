@@ -70,6 +70,10 @@ export const ui = {
     "blog.onMedium": "Auch auf Medium erschienen",
     "blog.readOnMedium": "Auf Medium lesen",
     "blog.followOnMedium": "Folge mir auf Medium",
+    "blog.machineTranslated":
+      "Dieser Artikel wurde automatisch aus dem Englischen übersetzt.",
+    "blog.readOriginal": "Original auf Englisch lesen",
+    "blog.onlyEnglish": "Diesen Artikel gibt es bisher nur auf Englisch.",
   },
   en: {
     "meta.title": "Tim Schulz – Software Developer & IT Consultant",
@@ -124,6 +128,10 @@ export const ui = {
     "blog.onMedium": "Also published on Medium",
     "blog.readOnMedium": "Read on Medium",
     "blog.followOnMedium": "Follow me on Medium",
+    "blog.machineTranslated":
+      "This article was automatically translated from English.",
+    "blog.readOriginal": "Read the English original",
+    "blog.onlyEnglish": "This article is only available in English so far.",
   },
 } as const;
 
