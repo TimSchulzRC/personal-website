@@ -8,6 +8,7 @@ interface FeedItem {
   title: string;
   link: string;
   pubDate: string;
+  "atom:updated": string;
   category?: string | string[];
   "content:encoded": string;
 }
@@ -59,6 +60,7 @@ const blog = defineCollection({
         title: item.title,
         url,
         pubDate: new Date(item.pubDate),
+        updated: new Date(item["atom:updated"]),
         categories: [item.category ?? []].flat(),
         excerpt: excerpt(content),
         // The first image in a Medium post is usually its cover.
@@ -71,6 +73,7 @@ const blog = defineCollection({
     title: z.string(),
     url: z.url(),
     pubDate: z.date(),
+    updated: z.date(),
     categories: z.array(z.string()),
     excerpt: z.string(),
     image: z.url().optional(),

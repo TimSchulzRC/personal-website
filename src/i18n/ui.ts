@@ -69,6 +69,7 @@ export const ui = {
     "blog.back": "Alle Artikel",
     "blog.onMedium": "Auch auf Medium erschienen",
     "blog.readOnMedium": "Auf Medium lesen",
+    "blog.followOnMedium": "Folge mir auf Medium",
   },
   en: {
     "meta.title": "Tim Schulz – Software Developer & IT Consultant",
@@ -122,6 +123,7 @@ export const ui = {
     "blog.back": "All articles",
     "blog.onMedium": "Also published on Medium",
     "blog.readOnMedium": "Read on Medium",
+    "blog.followOnMedium": "Follow me on Medium",
   },
 } as const;
 

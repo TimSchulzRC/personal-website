@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, getRoute } from "../i18n/utils";
+import MediumLink from "./MediumLink.astro";
 import ReadingBackdrop from "./ReadingBackdrop.astro";
 
 interface Props {
@@ -33,6 +34,11 @@ const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "long" });
 	<h1 class="mt-6 font-mono text-4xl text-white md:text-5xl">
 		{t("blog.title")}
 	</h1>
+	<MediumLink
+		href="https://medium.com/@tim-schulz"
+		label={t("blog.followOnMedium")}
+		class="mt-4"
+	/>
 
 	{
 		posts.length === 0 ? (

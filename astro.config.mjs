@@ -20,9 +20,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Blog posts declare their Medium original as canonical, so they don't
-      // belong in this site's sitemap.
-      filter: (page) => !/\/blog\/[^/]+\/$/.test(new URL(page).pathname),
+      // German blog post pages carry the same article as the English ones
+      // and point to them as canonical, so only the English URLs are listed.
+      filter: (page) => !/^\/blog\/[^/]+\/$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: "de",
         locales: {
