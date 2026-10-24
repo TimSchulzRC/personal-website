@@ -1,0 +1,42 @@
+# Checks the Medium feed once a day and rebuilds the site on Vercel only if
+# posts were added, updated or removed. The build itself fetches the feed.
+#
+# Setup: create a Deploy Hook for the `main` branch in Vercel
+# (Project Settings → Git → Deploy Hooks) and store its URL as the
+# repository secret `VERCEL_DEPLOY_HOOK`.
+name: Rebuild blog
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # daily at 05:00 UTC
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Rebuild even if the feed hasn't changed
+        type: boolean
+        default: false
+
+jobs:
+  check-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Compare Medium feed with deployed site
+        id: feed
+        run: node scripts/check-medium-feed.mjs
+
+      - name: Trigger Vercel deploy
+        if: steps.feed.outputs.changed == 'true' || inputs.force
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "::error::Repository secret VERCEL_DEPLOY_HOOK is not set."
+            exit 1
+          fi
+          curl --fail --silent --show-error -X POST "$VERCEL_DEPLOY_HOOK"
