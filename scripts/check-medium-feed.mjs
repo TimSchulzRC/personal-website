@@ -18,6 +18,11 @@ async function fetchText(url) {
 
 /** Same shape as src/pages/blog-feed-state.json.ts. */
 function feedState(xml) {
+  // An error or challenge page served with status 200 would otherwise look
+  // like a feed without posts.
+  if (!/<rss[\s>]/.test(xml) || !xml.includes("<channel>")) {
+    throw new Error("Medium did not return an RSS feed.");
+  }
   const items = xml.match(/<item>[\s\S]*?<\/item>/g) ?? [];
   return items
     .map((item) => {
