@@ -11,6 +11,7 @@ export const routes = {
   home: { de: "/", en: "/en/" },
   imprint: { de: "/impressum/", en: "/en/legal/" },
   privacy: { de: "/datenschutz/", en: "/en/privacy/" },
+  blog: { de: "/blog/", en: "/en/blog/" },
 } as const;
 
 export type RouteKey = keyof typeof routes;
@@ -27,6 +28,9 @@ export const ui = {
     "meta.privacy.title": "Datenschutzerklärung – Tim Schulz",
     "meta.privacy.description":
       "Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten auf timschulz.net.",
+    "meta.blog.title": "Blog – Tim Schulz",
+    "meta.blog.description":
+      "Artikel von Tim Schulz über Softwareentwicklung, Technik und Produkte.",
 
     "hero.greeting": "Hey, ich bin",
     "about.title": "Über mich",
@@ -57,6 +61,21 @@ export const ui = {
     "a11y.social": "Soziale Netzwerke",
     "a11y.skipToContent": "Zum Inhalt springen",
     "back.home": "Zurück zur Startseite",
+
+    "nav.blog": "Blog",
+    "blog.title": "Blog",
+    "blog.empty": "Noch keine Artikel veröffentlicht.",
+    "blog.readMore": "Weiterlesen",
+    "blog.back": "Alle Artikel",
+    "blog.onMedium": "Auch auf Medium erschienen",
+    "blog.readOnMedium": "Auf Medium lesen",
+    "blog.followOnMedium": "Folge mir auf Medium",
+    "blog.machineTranslated":
+      "Dieser Artikel wurde automatisch aus dem Englischen übersetzt.",
+    "blog.readOriginal": "Original auf Englisch lesen",
+    "blog.onlyEnglish": "Diesen Artikel gibt es bisher nur auf Englisch.",
+    "blog.translatedBadge": "Automatisch übersetzt",
+    "blog.englishBadge": "Nur auf Englisch",
   },
   en: {
     "meta.title": "Tim Schulz – Software Developer & IT Consultant",
@@ -69,6 +88,9 @@ export const ui = {
     "meta.privacy.title": "Privacy Policy – Tim Schulz",
     "meta.privacy.description":
       "Information on data protection and the processing of personal data on timschulz.net.",
+    "meta.blog.title": "Blog – Tim Schulz",
+    "meta.blog.description":
+      "Articles by Tim Schulz on software development, tech and products.",
 
     "hero.greeting": "Hey, I'm",
     "about.title": "About me",
@@ -99,6 +121,21 @@ export const ui = {
     "a11y.social": "Social networks",
     "a11y.skipToContent": "Skip to content",
     "back.home": "Back to home",
+
+    "nav.blog": "Blog",
+    "blog.title": "Blog",
+    "blog.empty": "No articles published yet.",
+    "blog.readMore": "Read more",
+    "blog.back": "All articles",
+    "blog.onMedium": "Also published on Medium",
+    "blog.readOnMedium": "Read on Medium",
+    "blog.followOnMedium": "Follow me on Medium",
+    "blog.machineTranslated":
+      "This article was automatically translated from English.",
+    "blog.readOriginal": "Read the English original",
+    "blog.onlyEnglish": "This article is only available in English so far.",
+    "blog.translatedBadge": "Automatically translated",
+    "blog.englishBadge": "English only",
   },
 } as const;
 

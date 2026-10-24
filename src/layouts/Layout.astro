@@ -13,17 +13,36 @@ interface Props {
   title: string;
   description: string;
   ogType?: string;
+  /** Localized URLs of this page, if they differ from the route's base paths. */
+  alternates?: { de: string; en: string };
+  /** Absolute canonical URL, if it isn't this page's own URL. */
+  canonicalUrl?: string;
+  /** Page-specific social preview image; defaults to the site-wide one. */
+  ogImage?: { src: string; width: number; height: number; alt: string };
 }
 
-const { lang, routeKey, title, description, ogType = "website" } = Astro.props;
+const {
+  lang,
+  routeKey,
+  title,
+  description,
+  ogType = "website",
+  canonicalUrl,
+  ogImage: pageOgImage,
+} = Astro.props;
 const t = useTranslations(lang);
 
 const site = Astro.site ?? new URL("https://timschulz.net");
-const alternates = getAlternates(routeKey);
-const canonical = new URL(alternates[lang], site).href;
+const alternates = Astro.props.alternates ?? getAlternates(routeKey);
+const canonical = canonicalUrl ?? new URL(alternates[lang], site).href;
 const absDe = new URL(alternates.de, site).href;
 const absEn = new URL(alternates.en, site).href;
-const ogImage = new URL("/og-image.png", site).href;
+const ogImage = pageOgImage ?? {
+  src: new URL("/og-image.png", site).href,
+  width: 1200,
+  height: 630,
+  alt: "Tim Schulz",
+};
 
 const ogLocale = lang === "de" ? "de_DE" : "en_US";
 const ogLocaleAlt = lang === "de" ? "en_US" : "de_DE";
@@ -34,7 +53,7 @@ const personLd = {
   name: "Tim Schulz",
   url: site.href,
   jobTitle: t("footer.tagline"),
-  image: ogImage,
+  image: new URL("/og-image.png", site).href,
   email: "kontakt@timschulz.net",
   sameAs: [
     "https://github.com/TimSchulzRC",
@@ -80,9 +99,15 @@ const personLd = {
     <meta name="generator" content={Astro.generator} />
 
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="de" href={absDe} />
-    <link rel="alternate" hreflang="en" href={absEn} />
-    <link rel="alternate" hreflang="x-default" href={absDe} />
+    {
+      !canonicalUrl && (
+        <>
+          <link rel="alternate" hreflang="de" href={absDe} />
+          <link rel="alternate" hreflang="en" href={absEn} />
+          <link rel="alternate" hreflang="x-default" href={absDe} />
+        </>
+      )
+    }
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -95,10 +120,10 @@ const personLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:locale:alternate" content={ogLocaleAlt} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Tim Schulz" />
+    <meta property="og:image" content={ogImage.src} />
+    <meta property="og:image:width" content={String(ogImage.width)} />
+    <meta property="og:image:height" content={String(ogImage.height)} />
+    <meta property="og:image:alt" content={ogImage.alt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -106,7 +131,8 @@ const personLd = {
     <meta name="twitter:creator" content="@TimSchulzRC" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImage.src} />
+    <meta name="twitter:image:alt" content={ogImage.alt} />
 
     <link
       rel="preload"
@@ -135,6 +161,7 @@ const personLd = {
       is:inline
       set:html={JSON.stringify(personLd)}
     />
+    <slot name="head" />
   </head>
   <body class="bg-background relative overflow-x-hidden">
     <a
@@ -159,11 +186,9 @@ const personLd = {
         <div class="h-px flex-1 bg-linear-to-r from-white/40 to-transparent">
         </div>
         <a
-          href="https://medium.com/@tim-schulz"
-          target="_blank"
-          rel="noopener noreferrer"
+          href={getRoute("blog", lang)}
           class="hover:text-primary font-mono text-sm text-white/70 transition-colors"
-          >Blog</a
+          >{t("nav.blog")}</a
         >
         <span class="text-white/50" aria-hidden="true">|</span>
         <LanguageToggle lang={lang} alternates={alternates} />

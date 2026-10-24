@@ -1,0 +1,17 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageBlogIndex from "../../components/PageBlogIndex.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "de";
+const t = useTranslations(lang);
+---
+
+<Layout
+	lang={lang}
+	routeKey="blog"
+	title={t("meta.blog.title")}
+	description={t("meta.blog.description")}
+>
+	<PageBlogIndex lang={lang} />
+</Layout>

@@ -1,0 +1,11 @@
+---
+// Solid backdrop behind a text column so the background pattern doesn't hurt
+// readability. Place it inside a `relative` container; it fades out on all
+// sides into the page background.
+---
+
+<div
+	class="pointer-events-none absolute inset-y-0 -inset-x-16 -z-10 bg-[linear-gradient(to_right,transparent,var(--color-background)_4rem,var(--color-background)_calc(100%-4rem),transparent)] mask-[linear-gradient(to_bottom,transparent,black_4rem,black_calc(100%-4rem),transparent)]"
+	aria-hidden="true"
+>
+</div>
